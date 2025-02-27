@@ -2,22 +2,18 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-#include <random>
 #include "generation.h"
+#include "Character.h"
 
-void GenerateGameField() {
+void GenerateGameField(Character &player) {
     generation GenData;
 
     int width = GenData.SectorWidth;
     int height = GenData.SectorHeight;
 
-    std::srand(std::time(nullptr));
     std::vector<std::vector<char>> grid(height, std::vector<char>(width, ' '));
 
-    //make it random
-    int x = std::rand() % width;
-    int y = std::rand() % height;
-    grid[y][x] = '#';
+    grid[player.y][player.x] = '#';
 
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
