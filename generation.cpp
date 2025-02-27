@@ -1,27 +1,38 @@
-//
-// Created by sta on 2/27/25.
-//
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+#include <random>
 #include "generation.h"
 
-#include <iostream>
-
-void GenerateGameField(int SectorWidth, int SectorHeight)
-{
+void GenerateGameField() {
     generation GenData;
-    for (int y = 1; y <= GenData.SectorHeight ; y++)
-    {
-        for (int x = 1; x <= GenData.SectorWidth ; x++)
-        {
-            if (y % GenData.SectorHeight == 0)
-            {
-                std::cout << "+---";
-            }
-            else
-            {
-                std::cout << "|";
-            }
+
+    int width = GenData.SectorWidth;
+    int height = GenData.SectorHeight;
+
+    std::srand(std::time(nullptr));
+    std::vector<std::vector<char>> grid(height, std::vector<char>(width, ' '));
+
+    //make it random
+    int x = std::rand() % width;
+    int y = std::rand() % height;
+    grid[y][x] = '#';
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            std::cout << "+---";
         }
-        std::cout << (y % GenData.SectorHeight == 0 ? "+" : "|") << std::endl;
+        std::cout << "+" << std::endl;
+
+        for (int x = 0; x < width; x++) {
+            std::cout << "| " << grid[y][x] << " ";
+        }
+        std::cout << "|" << std::endl;
     }
 
+    for (int x = 0; x < width; x++) {
+        std::cout << "+---";
+    }
+    std::cout << "+" << std::endl;
 }

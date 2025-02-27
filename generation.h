@@ -6,8 +6,8 @@
 
 class generation {
     public:
-    int SectorWidth = 10;
-    int SectorHeight = 10;
+    int SectorWidth = 5;
+    int SectorHeight = 5;
 
 };
 
