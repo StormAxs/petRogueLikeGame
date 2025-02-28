@@ -8,11 +8,24 @@
 Character::Character(int startX, int startY)
     : x(startX), y(startY), HP(50), DMG(1) {}
 
-void Character::Move(int dx, int dy)
-{
-    x += dx;
-    y += dy;
+void Character::Move(char direction, int maxWidth, int maxHeight) {
+    //switch case. finally
+    switch (direction) {
+    case 'w': // W
+        if (y > 0) y--;
+        break;
+    case 's': // S
+        if (y < maxHeight - 1) y++;
+        break;
+    case 'a': // A
+        if (x > 0) x--;
+        break;
+    case 'd': // D
+        if (x < maxWidth - 1) x++;
+        break;
+    }
 }
+
 
 void Character::DisplayStats() const
 {

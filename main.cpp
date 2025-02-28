@@ -7,11 +7,24 @@ int main() {
     std::srand(time(NULL));
     int startX = std::rand() % 10;
     int startY = std::rand() % 10;
-    Character player(startX, startY);
 
-    player.DisplayStats();
+        Character player(startX, startY);
+        char input;
 
-    GenerateGameField(player);
+        while (true) {
+            player.DisplayStats();
+            GenerateGameField(player);
 
-    return 0;
-}
+            std::cout <<  "W/A/S/D for move. Q to quit:  ";
+            std::cin >> input;
+
+            if (input == 'q' || input == 'Q') {
+                std::cout << "Exiting game...";
+                break;
+            }
+
+            player.Move(input, 10, 10);
+        }
+
+        return 0;
+    }

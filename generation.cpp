@@ -1,19 +1,11 @@
 #include <iostream>
-#include <vector>
-#include <cstdlib>
-#include <ctime>
 #include "generation.h"
-#include "Character.h"
 
 void GenerateGameField(Character &player) {
-    generation GenData;
+    int width = 10;
+    int height = 10;
 
-    int width = GenData.SectorWidth;
-    int height = GenData.SectorHeight;
-
-    std::vector<std::vector<char>> grid(height, std::vector<char>(width, ' '));
-
-    grid[player.y][player.x] = '#';
+    std::cout << "\033[2J\033[1;1H";  // ANSI (Still don't know how it works tho)
 
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
@@ -22,7 +14,10 @@ void GenerateGameField(Character &player) {
         std::cout << "+" << std::endl;
 
         for (int x = 0; x < width; x++) {
-            std::cout << "| " << grid[y][x] << " ";
+            if (x == player.x && y == player.y)
+                std::cout << "| # ";
+            else
+                std::cout << "|   ";
         }
         std::cout << "|" << std::endl;
     }
